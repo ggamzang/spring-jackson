@@ -2,6 +2,7 @@ package com.example.jackson.controller;
 
 import com.example.jackson.domain.UserVO;
 import lombok.extern.java.Log;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,5 +17,10 @@ public class JacksonController {
     public Object convertPOJOandJSON(@RequestBody UserVO userVO){
         log.info("user id: " + userVO.getId() + ", user name:" + userVO.getName());
         return userVO;
+    }
+
+    @PostMapping("/userEntity")
+    public ResponseEntity convertPOJOandHTTPJSON(@RequestBody UserVO userVO){
+        return ResponseEntity.ok().body(userVO);
     }
 }
